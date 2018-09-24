@@ -1,8 +1,8 @@
 """
-Mitchell YU
+Mitchell Yu
 9/24/2018
 Text-Game - Black Jack
-I tried to create a very stripped down version of Black Jack. I didn't include any sort of spliting or anything fancy, just the basic rules. You may see a few places where I violated the DRY coding policy, but I decided that it was more important for the game to be completely bug free. I think the main challenge was deciding how to model the cards in the program efficiently, and it was pretty smooth sailing after that decision. There are certain places where I know loops would be much more efficient, but I didn't want to run before I could walk. (BIG HINT: if you want to break my game, then try to hit more than five times. I didn't allow for the full 9 possible hits because there is such a small chance of actually needing that many cards)
+I tried to create a very stripped down version of Black Jack. I didn't include any sort of spliting or anything fancy, just the basic rules. You may see a few places where I violated the DRY coding policy, but I decided that it was more important for the game to be completely bug free. I think the main challenge was deciding how to model the cards in the program efficiently, and it was pretty smooth sailing after that decision. There are certain places where I know loops would be much more efficient, but I didn't want to run before I could walk.
 For the most part, I'm pretty happy with the outcome. The game can be replayed, and it also keeps track of the money. I actually decided to give the dealer a slight edge, as it has a smaller chance of busting.
 I learned how to use classes from: https://docs.python.org/3/tutorial/classes.html
 On my honor - Mitchell Yu
