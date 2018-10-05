@@ -1,5 +1,7 @@
 """
 Working MindField
+Ms. Healy - Controlling the amount of digits displayed
+
 """
 
 import random
@@ -11,6 +13,15 @@ bomb = int(sys.argv[3])
 bh = height + 2
 bw = width + 2
 trueboard = [[0]*(bw) for x in range(bh)]
+digits = 0
+if width>height:
+	xtemp = width
+else:
+	xtemp = height
+while xtemp >= 1:
+	xtemp = xtemp/10
+	digits += 1
+
 try:
 	for z in range(bomb):
 		while True:
@@ -38,11 +49,11 @@ try:
 except IndexError:
 	pass
 
-displayboard = [["□"]*(width+1) for x in range(height+1)]
+displayboard = [[(digits-1)*" "+"□"]*(width+1) for x in range(height+1)]
 for x in range(width+1):
-	displayboard[0][x] = x
+	displayboard[0][x] = str(x).zfill(digits)
 for x in range(height+1):
-	displayboard[x][0] = x
+	displayboard[x][0] = str(x).zfill(digits)
 
 def userturn():
 	for x in range(len(displayboard)):
@@ -57,7 +68,7 @@ def userturn():
 		userturn()
 	else:
 		if movetype == 1:
-			if displayboard[ycord][xcord] == "□":
+			if displayboard[ycord][xcord] == (digits-1)*" "+"□":
 				displayboard[ycord][xcord] = "P"
 				userturn()
 			elif displayboard[ycord][xcord] == "P":
@@ -68,13 +79,13 @@ def userturn():
 				userturn()
 		elif movetype == 2:
 			if displayboard[ycord][xcord] == "P":
-				displayboard[ycord][xcord] = "□"
+				displayboard[ycord][xcord] = (digits-1)*" "+"□"
 				userturn()
 			else:
 				print("There is no flag in this position.")
 				userturn()
 		elif movetype == 3:
-			if displayboard[ycord][xcord] == "P" or displayboard[ycord][xcord] == "□":
+			if displayboard[ycord][xcord] == "P" or displayboard[ycord][xcord] == (digits-1)*" "+"□":
 				xcheck = xcord
 				ycheck = ycord
 				checksquare()
