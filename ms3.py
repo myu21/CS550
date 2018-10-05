@@ -3,7 +3,6 @@ Working MindField
 Ms. Healy - Controlling the amount of digits displayed
 
 """
-
 import random
 import sys
 
@@ -69,23 +68,23 @@ def userturn():
 	else:
 		if movetype == 1:
 			if displayboard[ycord][xcord] == (digits-1)*" "+"□":
-				displayboard[ycord][xcord] = "P"
+				displayboard[ycord][xcord] = (digits-1)*" "+"P"
 				userturn()
-			elif displayboard[ycord][xcord] == "P":
+			elif displayboard[ycord][xcord] == (digits-1)*" "+"P":
 				print("There is already a flag in this position")
 				userturn()
 			else:
 				print("This space is already uncovered")
 				userturn()
 		elif movetype == 2:
-			if displayboard[ycord][xcord] == "P":
+			if displayboard[ycord][xcord] == (digits-1)*" "+"P":
 				displayboard[ycord][xcord] = (digits-1)*" "+"□"
 				userturn()
 			else:
 				print("There is no flag in this position.")
 				userturn()
 		elif movetype == 3:
-			if displayboard[ycord][xcord] == "P" or displayboard[ycord][xcord] == (digits-1)*" "+"□":
+			if displayboard[ycord][xcord] == (digits-1)*" "+"P" or displayboard[ycord][xcord] == (digits-1)*" "+"□":
 				xcheck = xcord
 				ycheck = ycord
 				checksquare()
@@ -97,14 +96,14 @@ def checksquare():
 	if trueboard[ycheck][xcheck] == "*":
 		lose()
 	else:
-		displayboard[ycheck][xcheck] = trueboard[ycheck][xcheck]
+		displayboard[ycheck][xcheck] = (digits-1)*" "+str(trueboard[ycheck][xcheck])
 		userturn()
 
 def lose():
 	print("Sorry you lose.")
 	for x in range(1,width+1):
 		for y in range(1,height+1):
-			displayboard[y][x] = trueboard[y][x]
+			displayboard[y][x] = (digits-1)*" "+str(trueboard[y][x])
 	for x in range(len(displayboard)):
 		print(*displayboard[x])
 
