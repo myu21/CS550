@@ -1,3 +1,7 @@
+"""
+Working MindField
+"""
+
 import random
 import sys
 
