@@ -1,7 +1,7 @@
 """
 Mitchell Yu
 Mindfield Project
-I think after the board setup, the whole project was pretty smooth sailing from there. In this version of Mindfield, you will be able to uncover flags you previously planted, as well replay the game after you finish. I also made it so the board will apear in the same spot at the bottom of the screen after every turn to make the game less confusing.
+I think after the board setup, the whole project was pretty smooth sailing from there. In this version of Mindfield, you will be able to uncover flags you previously planted, as well replay the game after you finish. I also made it so the board will apear in the same spot at the bottom of the screen after every turn to make the game less confusing. I did however have a little trouble developing the "clicking on zero and uncovering all the zeros". After looking at the many solutions online, they all look insanely complicated for my level of coding, so I decided just to let that go. I guess it'll just be a really hard game of Mindfield.
 Citations:
 Control the # of digits of a diplayed integer - Ms. Healy
 On my honor - Mitchell Yu
