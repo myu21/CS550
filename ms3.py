@@ -2,10 +2,8 @@
 Mitchell Yu
 Mindfield Project
 
-I think after the board setup, the whole project was pretty smooth sailing from there. In this version of Mindfield, you will be able to uncover flags you previously planted, as well replay the game after you finish. I also made it so the board will apear in the same spot at the bottom of the screen after every turn to make the game less confusing.
-
-I did however have a little trouble developing the "clicking on zero and uncovering all the zeros". After looking at the many solutions online, they all look insanely complicated for my level of coding, so I decided just to let that go.
-[EDIT (Oct 8th): I had a revelation today just after class, and I understood EXACTLY what I was missing. So I decided to solve it to give me the satisfaction of successfully creating minefield. I didn't even need recursions, I simply checked each display value for a zero, and if it was a zero, it would uncover everything around it. I put this in a for loop in order to fully catch all of the possible zeros (assuming you play it in a reasonable sized board ie not 1000x1000). I'm personally really pleased with this solution (even though its not exactly the most efficient solution I have come up with). Feel free to grade it as a late assignment]
+I think after the board setup, the whole project was pretty smooth sailing from there. In this version of Mindfield, you will be able to uncover flags you previously planted, as well replay the game after you finish. I also made it so the board will apear in the same spot at the bottom of the screen after every turn to make the game less confusing
+I did however have a little trouble developing the "clicking on zero and uncovering all the zeros". It took a while for me to finally come up with this, but I simply checked each display value for a zero, and if it was a zero, it would uncover everything around it. I put this in a for loop in order to fully catch all of the possible zeros (assuming you play it in a reasonable sized board ie not 1000x1000). I'm personally really pleased with this solution (even though its not exactly the most efficient solution ).
 
 Citations:
 Control the # of digits of a diplayed integer - Ms. Healey
