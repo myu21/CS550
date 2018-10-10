@@ -8,7 +8,7 @@ I did however have a little trouble developing the "clicking on zero and uncover
 [EDIT (Oct 8th): I had a revelation today just after class, and I understood EXACTLY what I was missing. So I decided to solve it to give me the satisfaction of successfully creating minefield. I didn't even need recursions, I simply checked each display value for a zero, and if it was a zero, it would uncover everything around it. I put this in a for loop in order to fully catch all of the possible zeros (assuming you play it in a reasonable sized board ie not 1000x1000). I'm personally really pleased with this solution (even though its not exactly the most efficient solution I have come up with). Feel free to grade it as a late assignment]
 
 Citations:
-Control the # of digits of a diplayed integer - Ms. Healy
+Control the # of digits of a diplayed integer - Ms. Healey
 On my honor - Mitchell Yu
 """
 import random
