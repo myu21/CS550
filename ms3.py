@@ -1,7 +1,12 @@
 """
 Mitchell Yu
 Mindfield Project
-I think after the board setup, the whole project was pretty smooth sailing from there. In this version of Mindfield, you will be able to uncover flags you previously planted, as well replay the game after you finish. I also made it so the board will apear in the same spot at the bottom of the screen after every turn to make the game less confusing. I did however have a little trouble developing the "clicking on zero and uncovering all the zeros". After looking at the many solutions online, they all look insanely complicated for my level of coding, so I decided just to let that go. I guess it'll just be a really hard game of Mindfield.
+
+I think after the board setup, the whole project was pretty smooth sailing from there. In this version of Mindfield, you will be able to uncover flags you previously planted, as well replay the game after you finish. I also made it so the board will apear in the same spot at the bottom of the screen after every turn to make the game less confusing.
+
+I did however have a little trouble developing the "clicking on zero and uncovering all the zeros". After looking at the many solutions online, they all look insanely complicated for my level of coding, so I decided just to let that go.
+[EDIT (Oct 8th): I had a revelation today just after class, and I understood EXACTLY what I was missing. So I decided to solve it to give me the satisfaction of successfully creating minefield. I didn't even need recursions, I simply checked each display value for a zero, and if it was a zero, it would uncover everything around it. I put this in a for loop in order to fully catch all of the possible zeros (assuming you play it in a reasonable sized board ie not 1000x1000). I'm personally really pleased with this solution (even though its not exactly the most efficient solution I have come up with). Feel free to grade it as a late assignment]
+
 Citations:
 Control the # of digits of a diplayed integer - Ms. Healy
 On my honor - Mitchell Yu
@@ -25,9 +30,53 @@ while xtemp >= 1:
 	xtemp = xtemp/10
 	digits += 1
 
+def firstturn():
+	global displayboard
+	global fycord
+	global fxcord
+	displayboard = [[(digits-1)*" "+"□"]*(width+1) for x in range(height+1)]
+	for x in range(width+1):
+		displayboard[0][x] = str(x).zfill(digits)
+	for x in range(height+1):
+		displayboard[x][0] = str(x).zfill(digits)
+	try:
+		display()
+		fycord = int(input("Which row would you like to choose?\n>>"))
+		display()
+		fxcord = int(input("Which column would you like to choose?\n>>"))
+		if (fxcord>=1 and fxcord<=width) and (fycord>=1 and fycord<=height):
+			start()
+			displayboard[fycord][fxcord] = (digits-1)*" "+str(trueboard[fycord][fxcord])
+			fillzero()
+			userturn()
+		else:
+			print("Please input a coordinate value that is on the board")
+			firstturn()
+	except ValueError:
+		print("That is not a valid input")
+		firstturn()
+
+def fillzero():
+	#Uncovers the zeros
+	global displayboard
+	for z in range(5):
+		try:
+			for x in range(1,width):
+				for y in range(1,height):
+					if displayboard[y][x] == (digits-1)*" "+"0":
+						displayboard[y][x+1] = (digits-1)*" "+str(trueboard[y][x+1])
+						displayboard[y][x-1] = (digits-1)*" "+str(trueboard[y][x-1])
+						displayboard[y+1][x+1] = (digits-1)*" "+str(trueboard[y+1][x+1])
+						displayboard[y+1][x-1] = (digits-1)*" "+str(trueboard[y+1][x-1])
+						displayboard[y+1][x] = (digits-1)*" "+str(trueboard[y+1][x])
+						displayboard[y-1][x] = (digits-1)*" "+str(trueboard[y-1][x])
+						displayboard[y+1][x-1] = (digits-1)*" "+str(trueboard[y+1][x-1])
+						displayboard[y-1][x-1] = (digits-1)*" "+str(trueboard[y-1][x-1])
+		except IndexError:
+			pass
+
 def start():
 	#Board setup
-	global displayboard
 	global trueboard
 	trueboard = [[0]*(bw) for x in range(bh)]
 	try:
@@ -35,7 +84,7 @@ def start():
 			while True:
 				x = random.randint(1, bw-2)
 				y = random.randint(1, bh-2)
-				if trueboard[y][x] != "*":
+				if (trueboard[y][x] != "*") and (x != fxcord and y+1 != fycord) and (x != fxcord and y-1 != fycord) and (x+1 != fxcord and y != fycord) and (x-1 != fxcord and y != fycord) and (x+1 != fxcord and y+1 != fycord) and (x+1 != fxcord and y-1 != fycord) and (x-1 != fxcord and y+1 != fycord) and (x-1 != fxcord and y-1 != fycord):
 					trueboard[y][x] = "*"
 					break
 			if trueboard[y-1][x-1] != "*":
@@ -56,15 +105,6 @@ def start():
 				trueboard[y+1][x] += 1
 	except IndexError:
 		pass
-	#Display board setup
-	displayboard = [[(digits-1)*" "+"□"]*(width+1) for x in range(height+1)]
-	for x in range(width+1):
-		displayboard[0][x] = str(x).zfill(digits)
-	for x in range(height+1):
-		displayboard[x][0] = str(x).zfill(digits)
-	for x in range(40):
-		print(" ")
-	userturn()
 
 def userturn():
 	wintest()
@@ -73,16 +113,10 @@ def userturn():
 		global ycheck
 		display()
 		movetype = int(input("Would you like to place a flag(1), unpick a flag(2) or uncover a square(3)?\n>>"))
-		for x in range(40):
-			print(" ")
 		display()
 		ycord = int(input("Which row would you like to choose?\n>>"))
-		for x in range(40):
-			print(" ")
 		display() #The repeating of the display function may seem like dry coding, but my intent was for the board to remain in the same position every turn. It looked really confusing when the board kept on jumping up and down, so this ensures that the board is always displayed right above the question prompt.
 		xcord = int(input("Which column would you like to choose?\n>>"))
-		for x in range(40):
-			print(" ")
 		if movetype>= 1 and movetype<=3:
 			if (xcord>=1 and xcord<=width) and (ycord>=1 and ycord<=height):
 				if movetype == 1:
@@ -150,7 +184,7 @@ def end():
 		print(*displayboard[x])
 	end = input("Would you like to play again (y/n)\n>>")
 	if end == "y":
-		start()
+		firstturn()
 	elif end == "n":
 		print("Thanks for playing!")
 		sys.exit()
@@ -158,4 +192,4 @@ def end():
 		print("I'll take that as a no. Thanks for playing!")
 		sys.exit()
 
-start()
+firstturn()
