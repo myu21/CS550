@@ -29,7 +29,6 @@ for x in range(imgx):
 			escape2 = zsquare2 + ycord
 			if ((escape1**2)+(escape2**2))**(1/2) > 2:
 				break
-				print("working")
 			else:
 				zxcord = escape1
 				zycord = escape2
