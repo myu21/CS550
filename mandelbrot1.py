@@ -34,6 +34,6 @@ for x in range(imgx):
 				zycord = escape2
 				shade += 1
 				stop += 1
-		mandelbrot.putpixel((x,y),(shade//2,0,shade))
+		mandelbrot.putpixel((x,y),(shade-shade//2,0,shade))
 
 mandelbrot.save("mandelbrot.png","PNG")
