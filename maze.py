@@ -32,7 +32,6 @@ def boardcheck(x,y):
 					boardcheck(y,x+1)
 					break		
 		else:
-			print("working")
 			break	
 
 board[1][2] = 1
@@ -41,8 +40,8 @@ for x in range(width-1):
 	for y in range(height-1):
 		if board[y][x] == 1 and (board[y-1][x]+board[y+1][x]+board[y][x-1]+board[y][x+1] == 1):
 			boardcheck(x,y)
-			if board[y][x] == 1:
-				image.putpixel((x,y),(255,255,255))
+		if board[y][x] == 1:
+			image.putpixel((x,y),(255,255,255))
 print(*board)
 
 image.save("maze.png","PNG")
