@@ -52,7 +52,7 @@ def boardcheck(x,y):
 for z in range(1000):
 	for x in range (1,width-1):
 		for y in range (1,height-1):
-			if board[y][x] == 1 and board[y-1][x]+board[y+1][x]+board[y][x-1]+board[y][x+1] <=1:
+			if board[y][x] == 1:
 				boardcheck(x,y)
 
 
