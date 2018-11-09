@@ -5,12 +5,11 @@ height = 20
 
 board = [[0]*(width) for x in range(height)]
 
-board[7][7] = 1
-board[13][13]=1
+board[10][10] = 1
 
 
 def boardcheck(x,y):
-	if x <= 0 or x >= width-1 or y <= 0 or y >= height-1:
+	if x <= 0 or x >= width or y <= 0 or y >= height:
 		return "working"
 	deadend = [0,0,0,0]
 	try:
@@ -21,49 +20,41 @@ def boardcheck(x,y):
 					if board[y-1][x] != 1 and board[y-1][x-1] != 1 and board[y-1][x+1] !=1 and board[y-2][x] != 1:
 						board[y-1][x] = 1
 						boardcheck(x,y-1)
-						break
+						return "working"
 					else:
 						deadend[0] = 1
-						break
 				elif change == 1:
 					if board[y+1][x] != 1 and board[y+1][x-1] != 1 and board[y+1][x+1] !=1 and board[y+2][x] != 1:
 						board[y+1][x] = 1
 						boardcheck(x,y+1)
-						break
+						return "working"
 					else:
 						deadend[1] = 1
-						break
 				elif change == 2:
 					if board[y][x+1] != 1 and board[y-1][x+1] != 1 and board[y+1][x+1] !=1 and board[y][x+2] != 1:
 						board[y][x+1] = 1
 						boardcheck(x+1,y)
-						break
+						return "working"
 					else:
 						deadend[2] = 1
-						break
 				else:
 					if board[y][x-1] != 1 and board[y-1][x-1] != 1 and board[y+1][x-1] !=1 and board[y][x-2] != 1:
 						board[y][x-1] = 1
 						boardcheck(x-1,y)
-						break
+						return "working"
 					else:
 						deadend[3] = 1
-						break
 			else:
-				break
+				return "working"
 	except IndexError:
 		pass
 
-for z in range(100000):
+for z in range(1000):
 	for x in range (1,width-1):
 		for y in range (1,height-1):
 			if board[y][x] == 1 and board[y-1][x]+board[y+1][x]+board[y][x-1]+board[y][x+1] <=1:
 				boardcheck(x,y)
-for z in range(100000):
-	for x in range (1,width-1):
-		for y in range (1,height-1):
-			if board[y][x] == 1 and board[y-1][x]+board[y+1][x]+board[y][x-1]+board[y][x+1] <=1:
-				boardcheck(x,y)
+
 
 for x in range(len(board)):
 		print(*board[x])
