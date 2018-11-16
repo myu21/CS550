@@ -12,8 +12,8 @@ import sys
 origin = Image.open(sys.argv[1])
 imgx, imgy = origin.size
 filtered = Image.new("RGB", (imgx, imgy))
-posx = 9/20 # position of main object so everything around it will get darker
-posy = 1/3
+posx = 9/20 # x position of main object so everything around it will get darker 
+posy = 1/3 # y position of main object
 
 for x in range(imgx):
 	for y in range(imgy):
