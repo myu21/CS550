@@ -18,6 +18,7 @@ posy = 1/3
 for x in range(imgx):
 	for y in range(imgy):
 		r,g,b = origin.getpixel((x,y))
+		
 		rnew = int(r-(255-r)+180)
 		gnew = int(g-(255-g)+180)
 		bnew = int(b-(255-b)+180)
@@ -30,6 +31,5 @@ for x in range(imgx):
 		gnew += random.randint(0,10)
 
 		filtered.putpixel((x,y),(rnew,gnew,bnew))
-
 
 filtered.save(sys.argv[1]+"_filtered.png","PNG")
