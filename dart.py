@@ -20,4 +20,4 @@ for x in range(2,5):
 			hit += 1
 	output = (hit*4)/n
 	print(output)
-# the output approaches around 3.1-ish as the trial numbers get greater and greater
+# the output approaches around 3.14-ish as the trial numbers get greater and greater
