@@ -12,12 +12,12 @@ How do they work? A function with a degree of randomness produces values which a
 import random as r
 for x in range(2,5):
 	n = 10**x
-	missed = 0
+	hit = 0
 	for x in range(n):
 		xvalue = ((r.randint(0,1000))/1000)-1
 		yvalue = ((r.randint(0,1000))/1000)-1
-		if ((xvalue**2)+(yvalue**2))**(1/2) > 1: # used pythagorean theorem to find distance from origin. Since the circle is a unit circle, any value over one would not be in the circle.
-			missed += 1
-	output = (missed*4)/n
+		if ((xvalue**2)+(yvalue**2))**(1/2) <= 1: # used pythagorean theorem to find distance from origin. Since the circle is a unit circle, any value over one would not be in the circle.
+			hit += 1
+	output = (hit*4)/n
 	print(output)
-# the output approaches around 0.87-ish as the trial numbers get greater and greater
+# the output approaches around 3.1-ish as the trial numbers get greater and greater
